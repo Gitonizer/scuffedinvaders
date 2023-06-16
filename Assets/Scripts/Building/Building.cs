@@ -9,10 +9,6 @@ public class Building : MonoBehaviour
     private int _buildSizeX;
     private int _buildSizeY;
 
-    private void Awake()
-    {
-    }
-
     // Creates building prefab if you really really want to again I guess lmao
     private IEnumerator CO_Build()
     {

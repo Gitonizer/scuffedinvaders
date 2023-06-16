@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - BulletParent
+  - BuildingBlock
+  - Invader
+  - PlayerCollider
+  - Bullet
   layers:
   - Default
   - TransparentFX

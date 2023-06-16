@@ -11,7 +11,7 @@ public class BulletShooter : MonoBehaviour
 
     private void Awake()
     {
-        _bulletParent = GameObject.FindGameObjectWithTag("BulletParent").transform;
+        _bulletParent = GameObject.FindGameObjectWithTag(Tags.BULLET_PARENT).transform;
     }
 
     public void Shoot()

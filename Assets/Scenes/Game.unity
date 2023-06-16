@@ -154,6 +154,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &338561301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2354450983391742570, guid: 535d472a586bb7b458a485885c8b73ad, type: 3}
+  m_PrefabInstance: {fileID: 2915913668484639855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &338561304
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338561301}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8, y: 6}
+    newSize: {x: 8, y: 6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8, y: 6}
+  m_EdgeRadius: 0
 --- !u!1 &502205523
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +429,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1899a95957c03648a460d4159b894fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2128968160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2915913668399175602, guid: 535d472a586bb7b458a485885c8b73ad, type: 3}
+  m_PrefabInstance: {fileID: 2915913668484639855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &2128968166
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128968160}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9cb6f6c86c592d7489ba4320127bf68c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 9cb6f6c86c592d7489ba4320127bf68c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &2915913668484639855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -405,6 +457,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2354450983391742570, guid: 535d472a586bb7b458a485885c8b73ad, type: 3}
+      propertyPath: m_TagString
+      value: PlayerCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915913668399175600, guid: 535d472a586bb7b458a485885c8b73ad, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2915913668399175601, guid: 535d472a586bb7b458a485885c8b73ad, type: 3}
       propertyPath: m_RootOrder
       value: 4

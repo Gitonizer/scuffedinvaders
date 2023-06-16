@@ -9,7 +9,7 @@ public enum Direction
     Down
 }
 
-public class Invader : MonoBehaviour
+public class Invader : MonoBehaviour, IDamageable
 {
     private SpriteRenderer _sprite;
 
@@ -101,5 +101,31 @@ public class Invader : MonoBehaviour
         Vector3 frameMove = direction * _speed * Time.deltaTime;
         transform.position += frameMove;
         _traveledDistance += frameMove.x != 0 ? frameMove.x : frameMove.y;
+    }
+
+    public void Damage()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag(Tags.BULLET))
+            return;
+
+        if (other.gameObject.GetComponent<IDamageable>() != null)
+        {
+            Collide(other.gameObject.GetComponent<IDamageable>());
+        }
+        else if (other.gameObject.transform.parent.GetComponent<IDamageable>() != null) // player uuuh you know check parent I guess
+        {
+            Collide(other.gameObject.transform.parent.GetComponent<IDamageable>());
+        }
+    }
+
+    private void Collide(IDamageable damageable)
+    {
+        damageable.Damage();
+        Destroy(gameObject, 0.2f);
     }
 }

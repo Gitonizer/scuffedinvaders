@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     private CharacterController characterController;
     private SpriteRenderer sprite;
@@ -10,10 +10,6 @@ public class Player : MonoBehaviour
     private float speed;
 
     private float positionX;
-
-    private Camera camera;
-
-    private Vector2 _cameraBoundaries;
 
     private float _force;
 
@@ -27,15 +23,24 @@ public class Player : MonoBehaviour
 
     private bool _bulletCooldown;
     private float _bulletCooldownTime;
+    private bool _damageCooldown;
 
     private const float MAX_COOLDOWN_TIME = 0.5f;
 
+    private const int MAX_HEALTH = 3;
+
+    private int _currentHealth;
+
+    private Animation _hitAnimation;
+
     private void Awake()
     {
-        camera = Camera.main;
+        _damageCooldown = false;
+        _currentHealth = MAX_HEALTH;
         characterController = GetComponent<CharacterController>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
         _shooter = GetComponent<BulletShooter>();
+        _hitAnimation = GetComponent<Animation>();
 
         _force = MIN_FORCE;
     }
@@ -97,5 +102,30 @@ public class Player : MonoBehaviour
         _bulletCooldownTime = MAX_COOLDOWN_TIME;
 
         _shooter.Shoot();
+    }
+
+    public void OnDamageCooldownOn()
+    {
+        _damageCooldown = true;
+    }
+
+    public void OnDamageCooldownOff()
+    {
+        _damageCooldown = false;
+    }
+
+    public void Damage()
+    {
+        _hitAnimation.Play();
+
+        if (_damageCooldown)
+            return;
+
+        _currentHealth--;
+
+        if (_currentHealth <= 0)
+        {
+            //die here
+        }
     }
 }
