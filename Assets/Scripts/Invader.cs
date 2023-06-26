@@ -11,6 +11,7 @@ public enum Direction
 
 public class Invader : MonoBehaviour, IDamageable
 {
+    public int Points;
     private SpriteRenderer _sprite;
 
     private Vector3 _directionVector;
@@ -103,8 +104,9 @@ public class Invader : MonoBehaviour, IDamageable
         _traveledDistance += frameMove.x != 0 ? frameMove.x : frameMove.y;
     }
 
-    public void Damage()
+    public void Damage() //only bullets trigger this so we can inform the score here
     {
+        GameObject.FindGameObjectWithTag(Tags.SCORE).GetComponent<ScoreManager>().InvaderDeath(Points);
         Destroy(gameObject);
     }
 

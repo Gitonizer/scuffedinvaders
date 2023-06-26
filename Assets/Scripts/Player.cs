@@ -30,6 +30,10 @@ public class Player : MonoBehaviour, IDamageable
     private const int MAX_HEALTH = 3;
 
     private int _currentHealth;
+    private bool _healthChanged;
+
+    public int CurrentHealth { get { return _currentHealth; } }
+    public bool HealthChanged { get { return _healthChanged; } }
 
     private Animation _hitAnimation;
 
@@ -41,6 +45,7 @@ public class Player : MonoBehaviour, IDamageable
         sprite = GetComponentInChildren<SpriteRenderer>();
         _shooter = GetComponent<BulletShooter>();
         _hitAnimation = GetComponent<Animation>();
+        _healthChanged = false;
 
         _force = MIN_FORCE;
     }
@@ -121,11 +126,19 @@ public class Player : MonoBehaviour, IDamageable
         if (_damageCooldown)
             return;
 
+        StartCoroutine(HealthChangeEvent());
         _currentHealth--;
 
         if (_currentHealth <= 0)
         {
             //die here
         }
+    }
+
+    private IEnumerator HealthChangeEvent()
+    {
+        _healthChanged = true;
+        yield return null;
+        _healthChanged = false;
     }
 }

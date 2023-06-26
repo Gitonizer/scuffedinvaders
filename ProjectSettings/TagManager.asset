@@ -9,6 +9,7 @@ TagManager:
   - Invader
   - PlayerCollider
   - Bullet
+  - Score
   layers:
   - Default
   - TransparentFX

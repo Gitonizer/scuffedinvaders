@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac0170e7c4b41a4b84e5b2ad2d111d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Points: 100
   _maxX: 0
   _maxY: 0
   _traveledDistance: 0
