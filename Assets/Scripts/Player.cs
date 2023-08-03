@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -54,9 +55,19 @@ public class Player : MonoBehaviour, IDamageable
         speed = 6.0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1f)
+        {
+            Time.timeScale = 0f;
+            SceneManager.LoadScene(Constants.SCENE_HIGHSCORE, LoadSceneMode.Additive);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backspace) && Time.timeScale == 0f)
+        {
+            StartCoroutine(UnloadScene());
+        }
+
         AddForce();
         characterController.Move(new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f) * Time.deltaTime * speed * _force);
         positionX = GetPositionX();
@@ -140,5 +151,14 @@ public class Player : MonoBehaviour, IDamageable
         _healthChanged = true;
         yield return null;
         _healthChanged = false;
+    }
+
+    private IEnumerator UnloadScene()
+    {
+        AsyncOperation operation = SceneManager.UnloadSceneAsync(Constants.SCENE_HIGHSCORE);
+
+        yield return new WaitUntil(() => operation.isDone);
+
+        Time.timeScale = 1f;
     }
 }

@@ -16,11 +16,11 @@ public class BuildingGenerator : MonoBehaviour
     private void Awake()
     {
         _helper = GetComponent<GeneratorHelper>();
+        _buildingSize = Building.GetComponent<BoxCollider2D>().size.x;
     }
 
     void Start()
     {
-        _buildingSize = 1.65f;
         _buildingHeight = 1.15f;
         _distanceFactor = 1.6f;
         _height = CameraHelper.GetCameraBoundariesY().x + _buildingHeight * 2.2f;
