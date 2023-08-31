@@ -14,6 +14,11 @@ public class ScoreBoard : MonoBehaviour
 
     private void Start()
     {
+        UpdateScores();
+    }
+
+    public void UpdateScores()
+    {
         for (int i = 0; i < _scoreDisplays.Count; i++)
         {
             _scoreDisplays[i].Set(Highscores.TopScores[i].Name, Highscores.TopScores[i].Points.ToString());

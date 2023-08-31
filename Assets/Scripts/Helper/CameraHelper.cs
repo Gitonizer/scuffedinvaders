@@ -6,11 +6,13 @@ public static class CameraHelper
 
     public static Vector2 GetCameraBoundariesX()
     {
+        if (camera == null) camera = Camera.main;
         return new Vector2(camera.ViewportToWorldPoint(new Vector3(0, 0.5f, 0f)).x, camera.ViewportToWorldPoint(new Vector3(1, 0.5f, 0f)).x);
     }
 
     public static Vector2 GetCameraBoundariesY()
     {
+        if (camera == null) camera = Camera.main;
         return new Vector2(camera.ViewportToWorldPoint(new Vector3(0, 0, 0f)).y, camera.ViewportToWorldPoint(new Vector3(1, 1, 0f)).y);
     }
 

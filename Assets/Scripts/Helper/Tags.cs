@@ -10,4 +10,5 @@ public static class Tags
     public const string BULLET = "Bullet";
     public const string BULLET_PARENT = "BulletParent";
     public const string SCORE = "Score";
+    public const string HIGHSCORE_BUTTON_TEXT = "HighscoreButtonText";
 }

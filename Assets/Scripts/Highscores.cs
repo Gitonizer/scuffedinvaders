@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Highscores : MonoBehaviour
 {
@@ -21,8 +22,8 @@ public class Highscores : MonoBehaviour
 
         TopScores = new List<Score>()
         {
-            new Score("AAA", 100),
-            new Score("AAA", 100),
+            new Score("AAA", 700),
+            new Score("AAA", 400),
             new Score("AAA", 100),
             new Score("AAA", 100),
             new Score("AAA", 100),

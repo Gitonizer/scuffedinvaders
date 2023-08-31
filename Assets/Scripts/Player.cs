@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,13 @@ public class Player : MonoBehaviour, IDamageable
 
     private Animation _hitAnimation;
 
+    private bool _isUpdateActive;
+
+    private void OnEnable()
+    {
+        EventManager.OnGameOver += DisableUpdate;
+    }
+
     private void Awake()
     {
         _damageCooldown = false;
@@ -47,6 +55,7 @@ public class Player : MonoBehaviour, IDamageable
         _shooter = GetComponent<BulletShooter>();
         _hitAnimation = GetComponent<Animation>();
         _healthChanged = false;
+        _isUpdateActive = true;
 
         _force = MIN_FORCE;
     }
@@ -57,6 +66,9 @@ public class Player : MonoBehaviour, IDamageable
 
     void Update()
     {
+        if (!_isUpdateActive)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1f)
         {
             Time.timeScale = 0f;
@@ -132,6 +144,9 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Damage()
     {
+        if (_hitAnimation.isPlaying)
+            return;
+
         _hitAnimation.Play();
 
         if (_damageCooldown)
@@ -142,7 +157,7 @@ public class Player : MonoBehaviour, IDamageable
 
         if (_currentHealth <= 0)
         {
-            //die here
+            EventManager.OnGameOver?.Invoke();
         }
     }
 
@@ -160,5 +175,15 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitUntil(() => operation.isDone);
 
         Time.timeScale = 1f;
+    }
+
+    private void DisableUpdate()
+    {
+        _isUpdateActive = false;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnGameOver -= DisableUpdate;
     }
 }

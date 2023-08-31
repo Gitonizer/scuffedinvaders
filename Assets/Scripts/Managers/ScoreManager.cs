@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
+        _currentScore = 0;
         _scoreChanged = false;
         ResetScore();
     }

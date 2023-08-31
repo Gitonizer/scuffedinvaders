@@ -10,6 +10,7 @@ TagManager:
   - PlayerCollider
   - Bullet
   - Score
+  - HighscoreButtonText
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ public class Menu : MonoBehaviour
     [Header("Canvas Groups")]
     public CanvasGroup MainMenuCanvas;
 
-    public GameObject hightesticles;
+    public Image Background;
 
     private void Awake()
     {
@@ -69,9 +69,11 @@ public class Menu : MonoBehaviour
     private void ShowMainMenu(bool show)
     {
         _onMainMenu = show;
-        MainMenuCanvas.alpha = show ? 1f : 0f;
         if (show)
-            StartCoroutine(FadeAndDo(new Vector2(0, 1), () => SceneManager.UnloadSceneAsync(Constants.SCENE_HIGHSCORE)));
+        {
+            Background.color = new Color(0, 0, 0, 0);
+            SceneManager.UnloadSceneAsync(Constants.SCENE_HIGHSCORE);
+        }
         else
             StartCoroutine(FadeAndDo(new Vector2(1, 0), () => SceneManager.LoadScene(Constants.SCENE_HIGHSCORE, LoadSceneMode.Additive)));
     }
@@ -124,11 +126,13 @@ public class Menu : MonoBehaviour
     private IEnumerator FadeAndDo(Vector2 fadeValues, Action action)
     {
         float currentTime = 0f;
-        float duration = 1f;
+        float duration = 0.5f;
+        Color backgroundColor = Color.black;
 
         while (currentTime < duration)
         {
-            MainMenuCanvas.alpha = Mathf.Lerp(fadeValues.x, fadeValues.y, currentTime / duration);
+            backgroundColor.a = Mathf.Lerp(fadeValues.y, fadeValues.x, currentTime / duration);
+            Background.color = backgroundColor;
             currentTime += Time.deltaTime;
             yield return null;
         }
