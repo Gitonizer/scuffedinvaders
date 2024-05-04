@@ -10,7 +10,6 @@ public class Highscores : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -18,12 +17,13 @@ public class Highscores : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
 
         TopScores = new List<Score>()
         {
-            new Score("AAA", 700),
-            new Score("AAA", 400),
+            new Score("AAA", 100),
+            new Score("AAA", 100),
             new Score("AAA", 100),
             new Score("AAA", 100),
             new Score("AAA", 100),

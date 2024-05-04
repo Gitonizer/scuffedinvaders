@@ -116,7 +116,7 @@ public class Menu : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
             {
                 OnBackToMenu();
             }

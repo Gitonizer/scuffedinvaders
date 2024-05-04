@@ -69,13 +69,21 @@ public class Player : MonoBehaviour, IDamageable
         if (!_isUpdateActive)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1f)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 0f;
-            SceneManager.LoadScene(Constants.SCENE_HIGHSCORE, LoadSceneMode.Additive);
+            if (Time.timeScale == 1f)
+            {
+                Time.timeScale = 0f;
+                SceneManager.LoadScene(Constants.SCENE_HIGHSCORE, LoadSceneMode.Additive);
+            }
+            else if (Time.timeScale == 0f)
+            {
+                Time.timeScale = 1f;
+                SceneManager.LoadScene(Constants.SCENE_MENU, LoadSceneMode.Single);
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace) && Time.timeScale == 0f)
+        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Backspace)) && Time.timeScale == 0f)
         {
             StartCoroutine(UnloadScene());
         }

@@ -32,7 +32,7 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
-        if (_readyToRestart && Input.GetKeyDown(KeyCode.Return))
+        if (_readyToRestart && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Backspace)))
         {
             StartCoroutine(RestartGameScene());
             _readyToRestart = false;
